@@ -111,12 +111,12 @@ app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 });
-/*app.use(
+app.use(
   cors({
     credentials: true,
     origin: 'http://localhost:3000',
   }),
-);*/
+);
 
 //2) Routes
 app.use('/', viewRouter);

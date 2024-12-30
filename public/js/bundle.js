@@ -2559,8 +2559,8 @@
         data: {
           email,
           password
-        }
-        //withCredentials: true,
+        },
+        withCredentials: true
       });
       if (res.data.status == "success") {
         showAlert("success", "Logged in successfully!");
