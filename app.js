@@ -40,6 +40,7 @@ const connectSrcUrls = [
   'https://unpkg.com',
   'https://tile.openstreetmap.org',
   'http://127.0.0.1:3000',
+  'https://natoursapp-hpa1.onrender.com',
 ];
 const fontSrcUrls = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 
@@ -59,7 +60,6 @@ app.use(
 );
 //To serve static files, inbuilt middleware
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 //Morgan middleware :It provides detailed logs for each request, including method, URL, status code, response time, and more.
 if (process.env.NODE_ENV === 'development') {
@@ -114,7 +114,7 @@ app.use((req, res, next) => {
 app.use(
   cors({
     credentials: true,
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'https://natoursapp-hpa1.onrender.com'],
   }),
 );
 
