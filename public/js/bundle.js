@@ -2553,10 +2553,9 @@
   // public/js/login.js
   var login = async (email, password) => {
     try {
-      console.log(email, password);
       const res = await axios_default({
         method: "POST",
-        url: "http://localhost:3000/api/v1/users/login",
+        url: "/api/v1/users/login",
         data: {
           email,
           password
@@ -2577,13 +2576,12 @@
     try {
       const res = await axios_default({
         method: "GET",
-        url: "http://localhost:3000/api/v1/users/logout"
+        url: "/api/v1/users/logout"
       });
       if (res.data.status == "success") {
         location.reload(true);
       }
     } catch (err) {
-      console.log(err.response);
       showAlert("error", "Error logging out.Try again.");
     }
   };
@@ -2591,7 +2589,7 @@
   // public/js/updateSettings.js
   var updateSettings = async (data, type) => {
     try {
-      const url = type === "data" ? "http://localhost:3000/api/v1/users/updateMe" : "http://localhost:3000/api/v1/users/updateMyPassword";
+      const url = type === "data" ? "/api/v1/users/updateMe" : "/api/v1/users/updateMyPassword";
       const res = await axios_default({
         method: "PATCH",
         url,
@@ -2745,15 +2743,12 @@
       const stripe = loadStripe(
         "pk_test_51QbE60RsHrmP6iEBCRuU0rgPNqNLyyUH3csrkuAfc6OO1hIsAQElKmJi9GIIgdItIILmmuB9N6jZQKb9sJOpxqQ800YnoJLO3Q"
       );
-      console.log(stripe);
       const response = await axios_default.get(
-        `http://localhost:3000/api/v1/bookings/checkout-session/${tourId}`
+        `/api/v1/bookings/checkout-session/${tourId}`
       );
-      console.log(response);
       const session = response.data.session;
       window.location.assign(session.url);
     } catch (err) {
-      console.error(err);
       showAlert("error", "Something went wrong. Please try again.");
     }
   };
@@ -2763,7 +2758,7 @@
     try {
       const res = await axios_default({
         method: "POST",
-        url: "http://localhost:3000/api/v1/users/signup",
+        url: "/api/v1/users/signup",
         data: {
           name,
           email,
@@ -2771,7 +2766,6 @@
           passwordConfirm
         }
       });
-      console.log("Response:", res);
       if (res.data.status == "success") {
         showAlert("success", "Signed Up successfully!");
         window.setTimeout(() => {
@@ -2792,7 +2786,6 @@
   var updatePassword = document.querySelector(".form-user-password");
   var bookBtn = document.getElementById("book-tour");
   if (mapleftlet) {
-    console.log(mapleftlet.dataset.locations);
     const locations = JSON.parse(mapleftlet.dataset.locations);
     displayMap(locations);
   }
@@ -2844,7 +2837,6 @@
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       const passwordConfirm = document.getElementById("passwordConfirm").value;
-      console.log(name, email, password, passwordConfirm);
       signup(name, email, password, passwordConfirm);
     });
   }

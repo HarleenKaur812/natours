@@ -17,7 +17,7 @@ const updatePassword = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
 
 if (mapleftlet) {
-  console.log(mapleftlet.dataset.locations);
+  //console.log(mapleftlet.dataset.locations);
   const locations = JSON.parse(mapleftlet.dataset.locations);
   displayMap(locations);
 }
@@ -79,7 +79,7 @@ if (signupForm) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('passwordConfirm').value;
-    console.log(name, email, password, passwordConfirm);
+    
     signup(name, email, password, passwordConfirm);
   });
 }

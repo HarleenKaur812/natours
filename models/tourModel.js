@@ -137,7 +137,7 @@ tourSchema.virtual('reviews', {
 //DOCUMENT MIDDLEWARE : runs before .save() and .create()
 tourSchema.pre('save', function (next) {
   this.slug = slugify(this.name, { lower: true });
-  console.log(this.slug);
+  //console.log(this.slug);
   next();
 });
 //Populating guides using embedding
@@ -167,10 +167,10 @@ tourSchema.pre(/^find/, function (next) {
   next();
 });
 
-tourSchema.post(/^find/, function (docs, next) {
-  console.log(`Query took ${Date.now() - this.start} miliseconds`);
-  next();
-});
+// tourSchema.post(/^find/, function (docs, next) {
+//   console.log(`Query took ${Date.now() - this.start} miliseconds`);
+//   next();
+// });
 
 //AGGREGATION MIDDLEWARE
 // tourSchema.pre('aggregate', function (next) {

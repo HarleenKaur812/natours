@@ -8,6 +8,7 @@ const mongoSantitize = require('express-mongo-sanitize');
 const hpp = require('hpp');
 const xss = require('xss-clean');
 const cors = require('cors');
+const compression = require('compression');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -59,11 +60,14 @@ app.use(
 //To serve static files, inbuilt middleware
 app.use(express.static(path.join(__dirname, 'public')));
 
-console.log(process.env.NODE_ENV);
+
 //Morgan middleware :It provides detailed logs for each request, including method, URL, status code, response time, and more.
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+//Compression middleware
+app.use(compression());
 
 //limiter is a middleware function used to limit requests from same API
 const limiter = rateLimit({
@@ -99,7 +103,7 @@ app.use(
 
 //Test middleware
 app.use((req, res, next) => {
-  console.log('Hello from the Middleware!');
+  //console.log('Hello from the Middleware!');
   next();
 });
 
