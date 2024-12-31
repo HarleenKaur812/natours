@@ -119,6 +119,7 @@ app.use(
     origin: ['http://localhost:3000', 'https://natoursapp-hpa1.onrender.com'],
   }),
 );
+app.options('*', cors());
 
 //2) Routes
 app.use('/', viewRouter);
