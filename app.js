@@ -24,6 +24,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 // 1) MIDDLEWARES
 //set security HTTP headers
+app.set('trust proxy', true);
+
 app.use(helmet());
 
 const scriptSrcUrls = [
